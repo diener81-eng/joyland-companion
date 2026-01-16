@@ -40,7 +40,7 @@ export function GameButton({
       onClick={onClick}
       disabled={disabled}
       className={cn(
-        "relative aspect-square w-full rounded-2xl border-0 p-4",
+        "relative w-full rounded-xl border-0 p-2",
         "transition-all duration-200 ease-out",
         "hover:scale-[1.02] hover:brightness-110",
         "active:scale-[0.98] active:brightness-95",
@@ -49,22 +49,21 @@ export function GameButton({
         variantStyles[variant]
       )}
     >
-      <div className="flex h-full flex-col items-center justify-center gap-1">
-        <div className="flex flex-col items-center gap-1 mb-1">
-          <span className="text-2xl font-black tracking-wide">{letter}</span>
-          <Icon className="h-6 w-6 opacity-90" strokeWidth={2.5} />
+      <div className="flex items-center gap-2 py-1.5">
+        <div className="flex items-center gap-1.5 shrink-0">
+          <span className="text-base font-black">{letter}</span>
+          <Icon className="h-4 w-4 opacity-90" strokeWidth={2.5} />
         </div>
-        <div className="text-center">
-          <div className="text-sm font-bold leading-tight">{title}</div>
-          {subtitle && (
-            <div className="text-sm font-semibold opacity-90 mt-0.5">{subtitle}</div>
+        <div className="text-left flex-1 min-w-0">
+          <div className="text-xs font-bold leading-tight truncate">
+            {title} {subtitle && <span className="opacity-90">{subtitle}</span>}
+          </div>
+          {hint && (
+            <span className="text-[9px] font-medium opacity-60 italic">
+              {hint}
+            </span>
           )}
         </div>
-        {hint && (
-          <span className="text-[10px] font-medium opacity-70 italic mt-1">
-            {hint}
-          </span>
-        )}
       </div>
     </button>
   );
