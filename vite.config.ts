@@ -5,6 +5,10 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
+  // GitHub Pages needs correct base paths for assets.
+  // Using "./" makes it work when deployed under /joyland-companion/
+  base: "./",
+
   server: {
     host: "::",
     port: 8080,
