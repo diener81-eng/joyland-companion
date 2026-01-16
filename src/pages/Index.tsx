@@ -197,26 +197,14 @@ export default function Index() {
 
         {/* Info Banner */}
         {displayInfo.banner && (
-          <div className="glass-card rounded-xl p-4 text-sm text-gaming-orange font-semibold">
+          <div className="glass-card rounded-xl p-3 text-sm text-gaming-orange font-semibold">
             {displayInfo.banner}
           </div>
         )}
 
-        {/* Status Card */}
-        <StatusCard
-          status={displayInfo.status}
-          cycleLocked={tracker.cycleLocked}
-          cycleKnown={displayInfo.cycleKnown}
-          completedNums={displayInfo.completedNums}
-          remainingNums={displayInfo.remainingNums}
-        />
-
-        {/* History Log */}
-        <HistoryLog history={tracker.inputHistory} />
-
-        {/* Timeline */}
+        {/* Timeline - moved above status */}
         {displayInfo.timeline && (
-          <div className="space-y-3">
+          <div className="space-y-2">
             <div className="grid grid-cols-6 gap-2 justify-items-center">
               {displayInfo.timeline.slice(0, 6).map((cell) => (
                 <TimelineCell key={cell.step} {...cell} />
@@ -232,6 +220,18 @@ export default function Index() {
             </div>
           </div>
         )}
+
+        {/* Status Card */}
+        <StatusCard
+          status={displayInfo.status}
+          cycleLocked={tracker.cycleLocked}
+          cycleKnown={displayInfo.cycleKnown}
+          completedNums={displayInfo.completedNums}
+          remainingNums={displayInfo.remainingNums}
+        />
+
+        {/* History Log */}
+        <HistoryLog history={tracker.inputHistory} />
 
         {/* Footer */}
         <div className="text-center text-xs text-muted-foreground pt-2">
