@@ -350,7 +350,7 @@ const tap = useCallback((event: EventType) => {
         const possibleThirdMoves = new Set(candidates.map(s => s.seq ? sequences[s.seq][2] : null));
         const hasCrossroads = possibleThirdMoves.has("Crossroads of Fate");
         const hasCube = possibleThirdMoves.has("Cube Battle");
-        const hasTreasure = possibleThirdMoves.has("Treasure Hunt");
+        const hasTreasure = possibleThirdMoves.has("Card Realm");
 
 if (!hasCrossroads && hasCube && hasTreasure) {
   banner = "Start-of-sequence: next is either Cube Battle (use 50×) or Card Realm (50× if you need gold).";

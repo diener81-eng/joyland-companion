@@ -20,7 +20,7 @@ export function TimelineCell({
   event
 }: TimelineCellProps) {
   const isCube = event === "Cube Battle";
-  const isTreasure = event === "Treasure Hunt";
+  const isTreasure = event === "Card Realm";
 
   return (
     <div
