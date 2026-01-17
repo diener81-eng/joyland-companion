@@ -142,40 +142,42 @@ export function useJoylandTracker() {
     return next;
   }, []);
 
-  const tap = useCallback((event: EventType) => {
-    let newStates: State[];
-    
-    if (states.length === 0) {
-      newStates = seedUnknownStates(event);
-    } else {
-      newStates = advanceStatesWithEvent(states, event);
+const tap = useCallback((event: EventType) => {
+  let newStates: State[];
+  
+  if (states.length === 0) {
+    // Seed unknown states with this event
+    const seeded = seedUnknownStates(event);
+    // Then immediately advance them with the same event
+    newStates = advanceStatesWithEvent(seeded, event);
+  } else {
+    newStates = advanceStatesWithEvent(states, event);
+  }
+
+  newStates = dedupeStates(newStates);
+
+  if (cycleLocked) {
+    const counts = new Map<number, number>();
+    for (const s of newStates) counts.set(s.doneMask, (counts.get(s.doneMask) || 0) + 1);
+    let bestMask: number | null = null;
+    let bestCount = -1;
+    for (const [m, c] of counts.entries()) {
+      if (c > bestCount) { bestCount = c; bestMask = m; }
     }
-
-    newStates = dedupeStates(newStates);
-
-    if (cycleLocked) {
-      const counts = new Map<number, number>();
-      for (const s of newStates) counts.set(s.doneMask, (counts.get(s.doneMask) || 0) + 1);
-      let bestMask: number | null = null;
-      let bestCount = -1;
-      for (const [m, c] of counts.entries()) {
-        if (c > bestCount) { bestCount = c; bestMask = m; }
-      }
-      if (bestMask !== null) {
-        newStates = newStates.filter(s => s.doneMask === bestMask);
-      }
+    if (bestMask !== null) {
+      newStates = newStates.filter(s => s.doneMask === bestMask);
     }
+  }
 
-    const newHistory = [...inputHistory, event];
-    const newStatesStack = [...statesStack, JSON.parse(JSON.stringify(newStates))];
-    const newCycleLockedStack = [...cycleLockedStack, cycleLocked];
+  const newHistory = [...inputHistory, event];
+  const newStatesStack = [...statesStack, JSON.parse(JSON.stringify(newStates))];
+  const newCycleLockedStack = [...cycleLockedStack, cycleLocked];
 
-    setStates(newStates);
-    setInputHistory(newHistory);
-    setStatesStack(newStatesStack);
-    setCycleLockedStack(newCycleLockedStack);
-  }, [states, inputHistory, cycleLocked, statesStack, cycleLockedStack, seedUnknownStates, advanceStatesWithEvent, dedupeStates]);
-
+  setStates(newStates);
+  setInputHistory(newHistory);
+  setStatesStack(newStatesStack);
+  setCycleLockedStack(newCycleLockedStack);
+}, [states, inputHistory, cycleLocked, statesStack, cycleLockedStack, seedUnknownStates, advanceStatesWithEvent, dedupeStates]);
   const undo = useCallback(() => {
     if (inputHistory.length === 0) return;
 
