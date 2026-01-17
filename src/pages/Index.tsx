@@ -39,9 +39,9 @@ const eventConfig: Record<EventType, {
   title: string; 
   subtitle: string; 
   hint?: string;
-  variant: 'gray' | 'teal' | 'red' | 'blue' | 'green-alt' | 'gold';
+  variant: 'gray' | 'teal' | 'red' | 'blue' | 'blue-dark' | 'green-alt' | 'gold';
 }> = {
-  "Tiny Adventures": { icon: Puzzle, letter: "T", title: "Tiny", subtitle: "Adventures", variant: "gray" },
+  "Tiny Adventures": { icon: Puzzle, letter: "T", title: "Tiny", subtitle: "Adventures", variant: "blue-dark" },
   "Crossroads of Fate": { icon: Compass, letter: "F", title: "Crossroads", subtitle: "of Fate", variant: "teal" },
   "Cube Battle": { icon: Dice5, letter: "A", title: "Cube", subtitle: "Battle", hint: "(wiki: Axe Ricochet)", variant: "red" },
   "Card Realm": { icon: Coins, letter: "C", title: "Card", subtitle: "Realm", variant: "blue" },  // Changed, removed hint
