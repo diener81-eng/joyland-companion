@@ -44,7 +44,7 @@ const eventConfig: Record<EventType, {
   "Tiny Adventures": { icon: Puzzle, letter: "T", title: "Tiny", subtitle: "Adventures", variant: "gray" },
   "Crossroads of Fate": { icon: Compass, letter: "F", title: "Crossroads", subtitle: "of Fate", variant: "teal" },
   "Cube Battle": { icon: Dice5, letter: "A", title: "Cube", subtitle: "Battle", hint: "(wiki: Axe Ricochet)", variant: "red" },
-  "Treasure Hunt": { icon: Coins, letter: "C", title: "Treasure", subtitle: "Hunt", hint: "(wiki: Card Realm)", variant: "blue" },
+  "Card Realm": { icon: Coins, letter: "C", title: "Card", subtitle: "Realm", variant: "blue" },  // Changed, removed hint
   "Axe Ricocheting": { icon: Axe, letter: "B", title: "Axe", subtitle: "Ricocheting", hint: "(wiki: Blocks Duel)", variant: "green-alt" },
   "Frenzy Wheel": { icon: Disc3, letter: "J", title: "Frenzy", subtitle: "Wheel", hint: "(wiki: Jackpot)", variant: "gold" },
 };
@@ -91,16 +91,15 @@ export default function Index() {
         <div className="text-center space-y-2">
           <h1 className="text-2xl font-bold text-foreground">Joyland Tracker</h1>
           <p className="text-sm text-muted-foreground leading-relaxed max-w-md mx-auto">
-            Tap each event as it appears in Joyland.
-            <br />
-            You will be warned when to use <strong>50× compass</strong>.
-            <br />
-            <span className="text-gaming-red">Cube Battle</span> → always 50×{" "}
-            <span className="opacity-70 italic">(wiki: Axe Ricochet)</span>
-            <br />
-            <span className="text-gaming-blue">Treasure Hunt</span> → 50× only if you need gold{" "}
-            <span className="opacity-70 italic">(wiki: Card Realm)</span>
-          </p>
+  Tap each event as it appears in Joyland.
+  <br />
+  You will be warned when to use <strong>50× compass</strong>.
+  <br />
+  <span className="text-gaming-red">Cube Battle</span> → always 50×{" "}
+  <span className="opacity-70 italic">(wiki: Axe Ricochet)</span>
+  <br />
+  <span className="text-gaming-blue">Card Realm</span> → 50× only if you need gold
+</p>
         </div>
 
         {/* Timeline Tracking Squares */}

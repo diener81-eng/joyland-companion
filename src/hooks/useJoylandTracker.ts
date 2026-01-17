@@ -4,7 +4,7 @@ export type EventType =
   | "Tiny Adventures" 
   | "Crossroads of Fate" 
   | "Cube Battle" 
-  | "Treasure Hunt" 
+  | "Card Realm" 
   | "Axe Ricocheting" 
   | "Frenzy Wheel";
 
@@ -24,17 +24,17 @@ interface TrackerData {
 }
 
 const sequences: Record<number, EventType[]> = {
-  1: ["Tiny Adventures", "Crossroads of Fate", "Tiny Adventures", "Axe Ricocheting", "Tiny Adventures", "Tiny Adventures", "Crossroads of Fate", "Treasure Hunt", "Tiny Adventures", "Crossroads of Fate", "Tiny Adventures", "Axe Ricocheting", "Frenzy Wheel"],
-  2: ["Tiny Adventures", "Tiny Adventures", "Cube Battle", "Tiny Adventures", "Crossroads of Fate", "Treasure Hunt", "Tiny Adventures", "Tiny Adventures", "Crossroads of Fate", "Frenzy Wheel", "Crossroads of Fate", "Tiny Adventures", "Axe Ricocheting"],
-  3: ["Tiny Adventures", "Tiny Adventures", "Crossroads of Fate", "Treasure Hunt", "Tiny Adventures", "Tiny Adventures", "Cube Battle", "Tiny Adventures", "Crossroads of Fate", "Frenzy Wheel", "Tiny Adventures", "Axe Ricocheting", "Crossroads of Fate"],
-  4: ["Tiny Adventures", "Tiny Adventures", "Treasure Hunt", "Tiny Adventures", "Crossroads of Fate", "Tiny Adventures", "Cube Battle", "Tiny Adventures", "Crossroads of Fate", "Tiny Adventures", "Crossroads of Fate", "Cube Battle", "Frenzy Wheel"]
+  1: ["Tiny Adventures", "Crossroads of Fate", "Tiny Adventures", "Axe Ricocheting", "Tiny Adventures", "Tiny Adventures", "Crossroads of Fate", "Card Realm", "Tiny Adventures", "Crossroads of Fate", "Tiny Adventures", "Axe Ricocheting", "Frenzy Wheel"],
+  2: ["Tiny Adventures", "Tiny Adventures", "Cube Battle", "Tiny Adventures", "Crossroads of Fate", "Card Realm", "Tiny Adventures", "Tiny Adventures", "Crossroads of Fate", "Frenzy Wheel", "Crossroads of Fate", "Tiny Adventures", "Axe Ricocheting"],
+  3: ["Tiny Adventures", "Tiny Adventures", "Crossroads of Fate", "Card Realm", "Tiny Adventures", "Tiny Adventures", "Cube Battle", "Tiny Adventures", "Crossroads of Fate", "Frenzy Wheel", "Tiny Adventures", "Axe Ricocheting", "Crossroads of Fate"],
+  4: ["Tiny Adventures", "Tiny Adventures", "Card Realm", "Tiny Adventures", "Crossroads of Fate", "Tiny Adventures", "Cube Battle", "Tiny Adventures", "Crossroads of Fate", "Tiny Adventures", "Crossroads of Fate", "Cube Battle", "Frenzy Wheel"]
 };
 
 export const abbrev: Record<EventType, string> = {
   "Tiny Adventures": "T",
   "Crossroads of Fate": "F",
   "Cube Battle": "A",
-  "Treasure Hunt": "C",
+  "Card Realm": "C",  // Changed from "Treasure Hunt",
   "Axe Ricocheting": "B",
   "Frenzy Wheel": "J"
 };
@@ -352,9 +352,9 @@ const tap = useCallback((event: EventType) => {
         const hasCube = possibleThirdMoves.has("Cube Battle");
         const hasTreasure = possibleThirdMoves.has("Treasure Hunt");
 
-        if (!hasCrossroads && hasCube && hasTreasure) {
-          banner = "Start-of-sequence: next is either Cube Battle (use 50×) or Treasure Hunt (50× if you need gold).";
-        }
+if (!hasCrossroads && hasCube && hasTreasure) {
+  banner = "Start-of-sequence: next is either Cube Battle (use 50×) or Card Realm (50× if you need gold).";
+}
       }
     }
 
@@ -384,22 +384,22 @@ const tap = useCallback((event: EventType) => {
     const moves = sequences[seq];
     const nextEvent = moves[nextExpected - 1];
 
-    let alert: { type: 'cube' | 'treasure', message: string } | null = null;
-    if (nextEvent === "Cube Battle") {
-      alert = { type: 'cube', message: "🚨 ENABLE 50× NOW (Cube Battle is next)" };
-    } else if (nextEvent === "Treasure Hunt") {
-      alert = { type: 'treasure', message: "💰 Treasure Hunt is next — invest 50× if you need gold" };
-    }
+let alert: { type: 'cube' | 'treasure', message: string } | null = null;
+if (nextEvent === "Cube Battle") {
+  alert = { type: 'cube', message: "🚨 ENABLE 50× NOW (Cube Battle is next)" };
+} else if (nextEvent === "Card Realm") {
+  alert = { type: 'treasure', message: "💰 Card Realm is next — invest 50× if you need gold" };
+}
 
     // Find next special event index
-    const upcoming = moves.slice(Math.max(0, nextExpected - 1));
-    let nextSpecialIndex = -1;
-    for (let i = 0; i < upcoming.length; i++) {
-      if (upcoming[i] === "Cube Battle" || upcoming[i] === "Treasure Hunt") {
-        nextSpecialIndex = i;
-        break;
-      }
-    }
+const upcoming = moves.slice(Math.max(0, nextExpected - 1));
+let nextSpecialIndex = -1;
+for (let i = 0; i < upcoming.length; i++) {
+  if (upcoming[i] === "Cube Battle" || upcoming[i] === "Card Realm") {
+    nextSpecialIndex = i;
+    break;
+  }
+}
 
     const timeline = moves.map((ev, i) => ({
       step: i + 1,
@@ -408,7 +408,7 @@ const tap = useCallback((event: EventType) => {
       isDone: i + 1 < currentMove,
       isCurrent: i + 1 === currentMove,
       isNextSpecial: nextSpecialIndex >= 0 && i + 1 === (nextExpected + nextSpecialIndex),
-      isSpecial: ev === "Cube Battle" || ev === "Treasure Hunt"
+      isSpecial: ev === "Cube Battle" || ev === "Card Realm"
     }));
 
     return {
