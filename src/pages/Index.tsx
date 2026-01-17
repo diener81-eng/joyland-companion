@@ -177,7 +177,7 @@ export default function Index() {
 </div>
         {/* Event Buttons */}
 {/* Event Buttons */}
-<div className="grid grid-cols-2 gap-3 justify-items-center">
+<div className="grid grid-cols-2 gap-2 justify-items-center">
   {(Object.keys(eventConfig) as EventType[]).map((event) => {
     const config = eventConfig[event];
     return (
@@ -199,48 +199,52 @@ export default function Index() {
         {/* Separator */}
         <div className="h-px bg-border rounded-full" />
 
-        {/* Save/Load Buttons */}
-        <div className="grid grid-cols-2 gap-3">
-          <GameButton
-            icon={Save}
-            letter="💾"
-            title="Copy"
-            subtitle="Save Code"
-            variant="dark"
-            onClick={handleCopySave}
-          />
-          <GameButton
-            icon={Download}
-            letter="📥"
-            title="Load"
-            subtitle="Save Code"
-            variant="dark-alt"
-            onClick={() => setLoadDialogOpen(true)}
-          />
-        </div>
+{/* Save/Load Buttons */}
+<div className="grid grid-cols-2 gap-2 justify-items-center">
+  <GameButton
+    icon={Save}
+    letter="💾"
+    title="Copy"
+    subtitle="Save Code"
+    variant="dark"
+    onClick={handleCopySave}
+    compact
+  />
+  <GameButton
+    icon={Download}
+    letter="📥"
+    title="Load"
+    subtitle="Save Code"
+    variant="dark-alt"
+    onClick={() => setLoadDialogOpen(true)}
+    compact
+  />
+</div>
 
         {/* Separator */}
         <div className="h-px bg-border rounded-full" />
 
-        {/* Undo/Reset Buttons */}
-        <div className="grid grid-cols-2 gap-3">
-          <GameButton
-            icon={Undo2}
-            letter="↩️"
-            title="Undo"
-            subtitle="Last Tap"
-            variant="purple"
-            onClick={tracker.undo}
-          />
-          <GameButton
-            icon={Trash2}
-            letter="🧼"
-            title="Reset"
-            subtitle="All"
-            variant="dark"
-            onClick={tracker.hardReset}
-          />
-        </div>
+{/* Undo/Reset Buttons */}
+<div className="grid grid-cols-2 gap-2 justify-items-center">
+  <GameButton
+    icon={Undo2}
+    letter="↩️"
+    title="Undo"
+    subtitle="Last Tap"
+    variant="purple"
+    onClick={tracker.undo}
+    compact
+  />
+  <GameButton
+    icon={Trash2}
+    letter="🧼"
+    title="Reset"
+    subtitle="All"
+    variant="dark"
+    onClick={tracker.hardReset}
+    compact
+  />
+</div>
 
         {/* History Log */}
         <HistoryLog history={tracker.inputHistory} />
