@@ -101,8 +101,48 @@ export default function Index() {
           </p>
         </div>
 
-        {/* Control Buttons */}
-        <div className="grid grid-cols-2 gap-3">
+        {/* Timeline Tracking Squares */}
+        {displayInfo.timeline && (
+          <div className="space-y-2">
+            <div className="grid grid-cols-6 gap-2 justify-items-center">
+              {displayInfo.timeline.slice(0, 6).map((cell) => (
+                <TimelineCell key={cell.step} {...cell} />
+              ))}
+            </div>
+            <div className="grid grid-cols-6 gap-2 justify-items-center">
+              {displayInfo.timeline.slice(6, 12).map((cell) => (
+                <TimelineCell key={cell.step} {...cell} />
+              ))}
+              {displayInfo.timeline[12] && (
+                <TimelineCell {...displayInfo.timeline[12]} />
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* Alert Banner */}
+        {displayInfo.alert && (
+          <AlertBanner type={displayInfo.alert.type} message={displayInfo.alert.message} />
+        )}
+
+        {/* Info Banner */}
+        {displayInfo.banner && (
+          <div className="glass-card rounded-xl p-3 text-sm text-gaming-orange font-semibold">
+            {displayInfo.banner}
+          </div>
+        )}
+
+        {/* Status Card */}
+        <StatusCard
+          status={displayInfo.status}
+          cycleLocked={tracker.cycleLocked}
+          cycleKnown={displayInfo.cycleKnown}
+          completedNums={displayInfo.completedNums}
+          remainingNums={displayInfo.remainingNums}
+        />
+
+        {/* Start Event / New Sequence - Compact, right-aligned */}
+        <div className="flex justify-end gap-2">
           <GameButton
             icon={Play}
             letter="🟢"
@@ -110,6 +150,7 @@ export default function Index() {
             subtitle="(cycle reset)"
             variant="green"
             onClick={tracker.startEventReset}
+            compact
           />
           <GameButton
             icon={SkipForward}
@@ -118,11 +159,9 @@ export default function Index() {
             subtitle="(move 1)"
             variant="green-alt"
             onClick={tracker.startNewSequence}
+            compact
           />
         </div>
-
-        {/* Separator */}
-        <div className="h-px bg-border rounded-full" />
 
         {/* Event Buttons */}
         <div className="grid grid-cols-2 gap-3">
@@ -189,46 +228,6 @@ export default function Index() {
             onClick={tracker.hardReset}
           />
         </div>
-
-        {/* Alert Banner */}
-        {displayInfo.alert && (
-          <AlertBanner type={displayInfo.alert.type} message={displayInfo.alert.message} />
-        )}
-
-        {/* Info Banner */}
-        {displayInfo.banner && (
-          <div className="glass-card rounded-xl p-3 text-sm text-gaming-orange font-semibold">
-            {displayInfo.banner}
-          </div>
-        )}
-
-        {/* Timeline - moved above status */}
-        {displayInfo.timeline && (
-          <div className="space-y-2">
-            <div className="grid grid-cols-6 gap-2 justify-items-center">
-              {displayInfo.timeline.slice(0, 6).map((cell) => (
-                <TimelineCell key={cell.step} {...cell} />
-              ))}
-            </div>
-            <div className="grid grid-cols-6 gap-2 justify-items-center">
-              {displayInfo.timeline.slice(6, 12).map((cell) => (
-                <TimelineCell key={cell.step} {...cell} />
-              ))}
-              {displayInfo.timeline[12] && (
-                <TimelineCell {...displayInfo.timeline[12]} />
-              )}
-            </div>
-          </div>
-        )}
-
-        {/* Status Card */}
-        <StatusCard
-          status={displayInfo.status}
-          cycleLocked={tracker.cycleLocked}
-          cycleKnown={displayInfo.cycleKnown}
-          completedNums={displayInfo.completedNums}
-          remainingNums={displayInfo.remainingNums}
-        />
 
         {/* History Log */}
         <HistoryLog history={tracker.inputHistory} />

@@ -10,6 +10,7 @@ interface GameButtonProps {
   variant: 'green' | 'green-alt' | 'gray' | 'teal' | 'red' | 'blue' | 'gold' | 'purple' | 'dark' | 'dark-alt';
   onClick: () => void;
   disabled?: boolean;
+  compact?: boolean;
 }
 
 const variantStyles = {
@@ -33,32 +34,37 @@ export function GameButton({
   hint, 
   variant, 
   onClick, 
-  disabled 
+  disabled,
+  compact = false
 }: GameButtonProps) {
   return (
     <button
       onClick={onClick}
       disabled={disabled}
       className={cn(
-        "relative w-full rounded-xl border-0 p-2",
+        "relative rounded-xl border-0",
         "transition-all duration-200 ease-out",
         "hover:scale-[1.02] hover:brightness-110",
         "active:scale-[0.98] active:brightness-95",
         "disabled:opacity-30 disabled:grayscale-[0.3] disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:brightness-100",
         "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-background",
-        variantStyles[variant]
+        variantStyles[variant],
+        compact ? "px-3 py-1.5" : "w-full p-2"
       )}
     >
-      <div className="flex items-center gap-2 py-1.5">
+      <div className={cn(
+        "flex items-center justify-center gap-2",
+        compact ? "" : "py-1.5"
+      )}>
         <div className="flex items-center gap-1.5 shrink-0">
-          <span className="text-base font-black">{letter}</span>
-          <Icon className="h-4 w-4 opacity-90" strokeWidth={2.5} />
+          <span className={cn("font-black", compact ? "text-sm" : "text-base")}>{letter}</span>
+          <Icon className={cn("opacity-90", compact ? "h-3 w-3" : "h-4 w-4")} strokeWidth={2.5} />
         </div>
-        <div className="text-left flex-1 min-w-0">
-          <div className="text-xs font-bold leading-tight truncate">
+        <div className="text-center min-w-0">
+          <div className={cn("font-bold leading-tight", compact ? "text-[10px]" : "text-xs")}>
             {title} {subtitle && <span className="opacity-90">{subtitle}</span>}
           </div>
-          {hint && (
+          {hint && !compact && (
             <span className="text-[9px] font-medium opacity-60 italic">
               {hint}
             </span>
