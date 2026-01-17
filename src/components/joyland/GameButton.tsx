@@ -7,7 +7,7 @@ interface GameButtonProps {
   title: string;
   subtitle?: string;
 
-  variant: 'green' | 'green-alt' | 'gray' | 'teal' | 'red' | 'blue' | 'blue-dark' | 'pink' | 'gold' | 'purple' | 'dark' | 'dark-alt';
+  variant: 'green' | 'green-alt' | 'gray' | 'teal' | 'red' | 'blue' | 'blue-dark' | 'pink' | 'gold' | 'purple' | 'purple-dim' | 'dark' | 'dark-alt';
   onClick: () => void;
   disabled?: boolean;
   compact?: boolean;
@@ -24,6 +24,8 @@ const variantStyles = {
   'pink': 'bg-gradient-to-br from-pink-300 to-pink-400/80 text-foreground', // Add this
   'gold': 'bg-gradient-to-br from-gaming-gold to-gaming-gold/80 text-primary-foreground gaming-glow-gold',
   'purple': 'bg-gradient-to-br from-gaming-purple to-gaming-purple/80 text-foreground gaming-glow-purple',
+  'purple-dim': 'bg-gradient-to-br from-gaming-purple/55 to-gaming-purple/40 text-foreground',
+
   'dark': 'bg-gradient-to-br from-muted to-muted/80 text-foreground',
   'dark-alt': 'bg-gradient-to-br from-secondary to-muted text-foreground',
 };

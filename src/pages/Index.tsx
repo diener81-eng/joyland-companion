@@ -168,7 +168,7 @@ export default function Index() {
     letter="❓"
     title="Unknown"
     subtitle="Position"
-    variant="purple"
+    vvariant="purple-dim"
     onClick={tracker.unknownPosition}
     compact
   />
@@ -228,7 +228,7 @@ export default function Index() {
     letter="↩️"
     title="Undo"
     subtitle="Last Tap"
-    variant="purple"
+    variant="purple-dim"
     onClick={tracker.undo}
     compact
   />
