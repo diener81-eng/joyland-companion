@@ -6,6 +6,7 @@ import { StatusCard } from "@/components/joyland/StatusCard";
 import { AlertBanner } from "@/components/joyland/AlertBanner";
 import { HistoryLog } from "@/components/joyland/HistoryLog";
 import { toast } from "sonner";
+import { SequenceTracker } from "@/components/joyland/SequenceTracker";
 import {
   Play,
   SkipForward,
@@ -132,37 +133,37 @@ export default function Index() {
           </div>
         )}
 
-        {/* Status Card */}
-        <StatusCard
-          status={displayInfo.status}
-          cycleLocked={tracker.cycleLocked}
-          cycleKnown={displayInfo.cycleKnown}
-          completedNums={displayInfo.completedNums}
-          remainingNums={displayInfo.remainingNums}
-        />
 
-        {/* Start Event / New Sequence - Compact, right-aligned */}
-        <div className="flex justify-end gap-2">
-          <GameButton
-            icon={Play}
-            letter="🟢"
-            title="Start Event"
-            subtitle="(cycle reset)"
-            variant="green"
-            onClick={tracker.startEventReset}
-            compact
-          />
-          <GameButton
-            icon={SkipForward}
-            letter="🟩"
-            title="New Sequence"
-            subtitle="(move 1)"
-            variant="green-alt"
-            onClick={tracker.startNewSequence}
-            compact
-          />
-        </div>
 
+{/* Sequence Tracker + Start Event / New Sequence */}
+<div className="flex items-center justify-between gap-2">
+  <SequenceTracker
+    currentSeq={displayInfo.currentSeq}
+    currentMove={displayInfo.currentMove}
+    completedNums={displayInfo.completedNums}
+    cycleKnown={displayInfo.cycleKnown}
+  />
+  <div className="flex gap-2 shrink-0">
+    <GameButton
+      icon={Play}
+      letter="🟢"
+      title="Start Event"
+      subtitle="(cycle reset)"
+      variant="green"
+      onClick={tracker.startEventReset}
+      compact
+    />
+    <GameButton
+      icon={SkipForward}
+      letter="🟩"
+      title="New Sequence"
+      subtitle="(move 1)"
+      variant="green-alt"
+      onClick={tracker.startNewSequence}
+      compact
+    />
+  </div>
+</div>
         {/* Event Buttons */}
         <div className="grid grid-cols-2 gap-3">
           {(Object.keys(eventConfig) as EventType[]).map((event) => {
