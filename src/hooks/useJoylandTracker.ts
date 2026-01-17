@@ -39,7 +39,7 @@ export const abbrev: Record<EventType, string> = {
   "Frenzy Wheel": "J"
 };
 
-const VERSION = "2.0.0";
+const VERSION = "2.0.1";
 const ALL_MASK = 0b1111;
 const bit = (seq: number) => (1 << (seq - 1));
 
