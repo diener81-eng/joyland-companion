@@ -10,6 +10,7 @@ import { SequenceTracker } from "@/components/joyland/SequenceTracker";
 import {
   Play,
   SkipForward,
+  HelpCircle,
   Puzzle,
   Compass,
   Dice5,
@@ -135,34 +136,45 @@ export default function Index() {
 
 
 
-{/* Sequence Tracker + Start Event / New Sequence */}
-<div className="flex items-center justify-between gap-2">
+{/* Sequence Tracker - centered above buttons */}
+<div className="flex justify-center">
   <SequenceTracker
     currentSeq={displayInfo.currentSeq}
     currentMove={displayInfo.currentMove}
     completedNums={displayInfo.completedNums}
     cycleKnown={displayInfo.cycleKnown}
-  /> 
-  <div className="flex gap-2 shrink-0">
-    <GameButton
-      icon={Play}
-      letter="🟢"
-      title="Start Event"
-      subtitle="(cycle reset)"
-      variant="green"
-      onClick={tracker.startEventReset}
-      compact
-    />
-    <GameButton
-      icon={SkipForward}
-      letter="🟩"
-      title="New Sequence"
-      subtitle="(move 1)"
-      variant="green-alt"
-      onClick={tracker.startNewSequence}
-      compact
-    />
-  </div>
+  />
+</div>
+
+{/* Start Event / New Sequence / Unknown Position - centered row */}
+<div className="flex justify-center gap-2">
+  <GameButton
+    icon={Play}
+    letter="🟢"
+    title="Start Event"
+    subtitle="(cycle reset)"
+    variant="green"
+    onClick={tracker.startEventReset}
+    compact
+  />
+  <GameButton
+    icon={SkipForward}
+    letter="🟩"
+    title="New Sequence"
+    subtitle="(move 1)"
+    variant="green-alt"
+    onClick={tracker.startNewSequence}
+    compact
+  />
+  <GameButton
+    icon={HelpCircle}
+    letter="❓"
+    title="Unknown"
+    subtitle="Position"
+    variant="purple"
+    onClick={tracker.unknownPosition}
+    compact
+  />
 </div>
         {/* Event Buttons */}
         <div className="grid grid-cols-2 gap-3">

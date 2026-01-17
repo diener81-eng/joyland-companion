@@ -213,6 +213,13 @@ export function useJoylandTracker() {
     setCycleLockedStack([]);
   }, [makeStartStates]);
 
+  const unknownPosition = useCallback(() => {
+  setStates([]);
+  setStatesStack([]);
+  setCycleLockedStack([]);
+  // Keep inputHistory and cycleLocked as they are
+}, []);
+
   const hardReset = useCallback(() => {
     setInputHistory([]);
     setStates([]);
@@ -428,6 +435,7 @@ export function useJoylandTracker() {
     undo,
     startEventReset,
     startNewSequence,
+    unknownPosition,
     hardReset,
     copySaveCode,
     loadSaveCode,
