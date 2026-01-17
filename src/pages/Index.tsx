@@ -176,24 +176,25 @@ export default function Index() {
   />
 </div>
         {/* Event Buttons */}
-        <div className="grid grid-cols-2 gap-3">
-          {(Object.keys(eventConfig) as EventType[]).map((event) => {
-            const config = eventConfig[event];
-            return (
-              <GameButton
-                key={event}
-                icon={config.icon}
-                letter={config.letter}
-                title={config.title}
-                subtitle={config.subtitle}
-                hint={config.hint}
-                variant={config.variant}
-                onClick={() => tracker.tap(event)}
-                disabled={isEventDisabled(event)}
-              />
-            );
-          })}
-        </div>
+{/* Event Buttons */}
+<div className="grid grid-cols-2 gap-3 justify-items-center">
+  {(Object.keys(eventConfig) as EventType[]).map((event) => {
+    const config = eventConfig[event];
+    return (
+      <GameButton
+        key={event}
+        icon={config.icon}
+        letter={config.letter}
+        title={config.title}
+        subtitle={config.subtitle}
+        hint={config.hint}
+        variant={config.variant}
+        onClick={() => tracker.tap(event)}
+        disabled={isEventDisabled(event)}
+      />
+    );
+  })}
+</div>
 
         {/* Separator */}
         <div className="h-px bg-border rounded-full" />

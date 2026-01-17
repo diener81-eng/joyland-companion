@@ -50,7 +50,7 @@ export function GameButton({
         "disabled:opacity-30 disabled:grayscale-[0.3] disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:brightness-100",
         "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-background",
         variantStyles[variant],
-        compact ? "px-3 py-1.5" : "w-full p-2"
+        compact ? "px-3 py-1.5" : "w-[70%] max-w-[200px] p-2"
       )}
     >
       <div className={cn(
@@ -61,16 +61,16 @@ export function GameButton({
           <span className={cn("font-black", compact ? "text-sm" : "text-base")}>{letter}</span>
           <Icon className={cn("opacity-90", compact ? "h-3 w-3" : "h-4 w-4")} strokeWidth={2.5} />
         </div>
-        <div className="text-center min-w-0">
-          <div className={cn("font-bold leading-tight", compact ? "text-[10px]" : "text-xs")}>
-            {title} {subtitle && <span className="opacity-90">{subtitle}</span>}
-          </div>
-          {hint && !compact && (
-            <span className="text-[9px] font-medium opacity-60 italic">
-              {hint}
-            </span>
-          )}
-        </div>
+<div className="text-center min-w-0">
+  <div className={cn("font-bold leading-tight", compact ? "text-[10px]" : "text-xs")}>
+    {title} {subtitle && <span className="opacity-90">{subtitle}</span>}
+  </div>
+  {!compact && (
+    <div className="text-[9px] font-medium opacity-60 italic h-[12px]">
+      {hint || '\u00A0'}
+    </div>
+  )}
+</div>
       </div>
     </button>
   );
