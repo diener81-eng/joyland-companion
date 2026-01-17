@@ -24,7 +24,8 @@ const variantStyles = {
   'pink': 'bg-gradient-to-br from-pink-300 to-pink-400/80 text-foreground', // Add this
   'gold': 'bg-gradient-to-br from-gaming-gold to-gaming-gold/80 text-primary-foreground gaming-glow-gold',
   'purple': 'bg-gradient-to-br from-gaming-purple to-gaming-purple/80 text-foreground gaming-glow-purple',
-  'purple-dim': 'bg-gradient-to-br from-gaming-purple/55 to-gaming-purple/40 text-foreground',
+  'purple-dim': 'bg-gradient-to-br from-gaming-purple/75 to-gaming-purple/55 text-foreground',
+
 
   'dark': 'bg-gradient-to-br from-muted to-muted/80 text-foreground',
   'dark-alt': 'bg-gradient-to-br from-secondary to-muted text-foreground',
@@ -51,7 +52,8 @@ export function GameButton({
         "active:scale-[0.98] active:brightness-95",
         "disabled:opacity-30 disabled:grayscale-[0.3] disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:brightness-100",
         "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-background",
-        variantStyles[variant],
+        variantStyles[variant] ?? variantStyles["purple-dim"] ?? variantStyles["dark"],
+
         compact ? "px-3 py-1.5" : "w-[70%] max-w-[200px] p-2"
       )}
     >
