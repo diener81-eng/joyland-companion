@@ -6,21 +6,22 @@ interface GameButtonProps {
   letter: string;
   title: string;
   subtitle?: string;
-  hint?: string;
-  variant: 'green' | 'green-alt' | 'gray' | 'teal' | 'red' | 'blue' | 'blue-dark' | 'gold' | 'purple' | 'dark' | 'dark-alt';
+
+  variant: 'green' | 'green-alt' | 'gray' | 'teal' | 'red' | 'blue' | 'blue-dark' | 'pink' | 'gold' | 'purple' | 'dark' | 'dark-alt';
   onClick: () => void;
   disabled?: boolean;
   compact?: boolean;
 }
 
 const variantStyles = {
-  'green': 'bg-gradient-to-br from-gaming-green to-gaming-green/80 text-primary-foreground gaming-glow-green',
-  'green-alt': 'bg-gradient-to-br from-gaming-green/90 to-gaming-green/70 text-primary-foreground',
+  'green': 'bg-gradient-to-br from-gaming-green/60 to-gaming-green/50 text-primary-foreground', // Made less bright
+  'green-alt': 'bg-gradient-to-br from-gaming-green/50 to-gaming-green/40 text-primary-foreground', // Made less bright
   'gray': 'bg-gradient-to-br from-secondary to-secondary/80 text-secondary-foreground',
   'teal': 'bg-gradient-to-br from-gaming-teal to-gaming-teal/80 text-primary-foreground gaming-glow-teal',
   'red': 'bg-gradient-to-br from-gaming-red to-gaming-red/80 text-foreground gaming-glow-red',
   'blue': 'bg-gradient-to-br from-gaming-blue to-gaming-blue/80 text-primary-foreground gaming-glow-blue',
-  'blue-dark': 'bg-gradient-to-br from-[#044280] to-[#044280]/80 text-primary-foreground', // Add this line
+  'blue-dark': 'bg-gradient-to-br from-[#044280] to-[#044280]/80 text-primary-foreground',
+  'pink': 'bg-gradient-to-br from-pink-300 to-pink-400/80 text-foreground', // Add this
   'gold': 'bg-gradient-to-br from-gaming-gold to-gaming-gold/80 text-primary-foreground gaming-glow-gold',
   'purple': 'bg-gradient-to-br from-gaming-purple to-gaming-purple/80 text-foreground gaming-glow-purple',
   'dark': 'bg-gradient-to-br from-muted to-muted/80 text-foreground',
@@ -32,7 +33,6 @@ export function GameButton({
   letter, 
   title, 
   subtitle, 
-  hint, 
   variant, 
   onClick, 
   disabled,
@@ -55,7 +55,7 @@ export function GameButton({
     >
       <div className={cn(
         "flex items-center justify-center gap-2",
-        compact ? "" : "py-1.5"
+        compact ? "" : "py-2"
       )}>
         <div className="flex items-center gap-1.5 shrink-0">
           <span className={cn("font-black", compact ? "text-sm" : "text-base")}>{letter}</span>
@@ -65,11 +65,7 @@ export function GameButton({
   <div className={cn("font-bold leading-tight", compact ? "text-[10px]" : "text-xs")}>
     {title} {subtitle && <span className="opacity-90">{subtitle}</span>}
   </div>
-  {!compact && (
-    <div className="text-[9px] font-medium opacity-60 italic h-[12px]">
-      {hint || '\u00A0'}
-    </div>
-  )}
+  
 </div>
       </div>
     </button>

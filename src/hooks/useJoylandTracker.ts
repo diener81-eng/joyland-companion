@@ -33,10 +33,10 @@ const sequences: Record<number, EventType[]> = {
 export const abbrev: Record<EventType, string> = {
   "Tiny Adventures": "T",
   "Crossroads of Fate": "F",
-  "Cube Battle": "A",
-  "Card Realm": "C",  // Changed from "Treasure Hunt",
-  "Axe Ricocheting": "B",
-  "Frenzy Wheel": "J"
+  "Cube Battle": "B",
+  "Card Realm": "C",
+  "Axe Ricocheting": "R",
+  "Frenzy Wheel": "W"
 };
 
 const VERSION = "2.0.1";

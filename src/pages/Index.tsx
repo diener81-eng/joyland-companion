@@ -38,15 +38,14 @@ const eventConfig: Record<EventType, {
   letter: string; 
   title: string; 
   subtitle: string; 
-  hint?: string;
-  variant: 'gray' | 'teal' | 'red' | 'blue' | 'blue-dark' | 'green-alt' | 'gold';
+  variant: 'gray' | 'teal' | 'red' | 'blue' | 'pink' | 'green-alt' | 'gold';
 }> = {
-  "Tiny Adventures": { icon: Puzzle, letter: "T", title: "Tiny", subtitle: "Adventures", variant: "blue-dark" },
+  "Tiny Adventures": { icon: Puzzle, letter: "T", title: "Tiny", subtitle: "Adventures", variant: "pink" },
   "Crossroads of Fate": { icon: Compass, letter: "F", title: "Crossroads", subtitle: "of Fate", variant: "teal" },
-  "Cube Battle": { icon: Dice5, letter: "A", title: "Cube", subtitle: "Battle", hint: "(wiki: Axe Ricochet)", variant: "red" },
-  "Card Realm": { icon: Coins, letter: "C", title: "Card", subtitle: "Realm", variant: "blue" },  // Changed, removed hint
-  "Axe Ricocheting": { icon: Axe, letter: "B", title: "Axe", subtitle: "Ricocheting", hint: "(wiki: Blocks Duel)", variant: "green-alt" },
-  "Frenzy Wheel": { icon: Disc3, letter: "J", title: "Frenzy", subtitle: "Wheel", hint: "(wiki: Jackpot)", variant: "gold" },
+  "Cube Battle": { icon: Dice5, letter: "B", title: "Cube", subtitle: "Battle", variant: "red" },
+  "Card Realm": { icon: Coins, letter: "C", title: "Card", subtitle: "Realm", variant: "blue" },
+  "Axe Ricocheting": { icon: Axe, letter: "R", title: "Axe", subtitle: "Ricocheting", variant: "green-alt" },
+  "Frenzy Wheel": { icon: Disc3, letter: "W", title: "Frenzy", subtitle: "Wheel", variant: "gold" },
 };
 
 export default function Index() {
@@ -96,7 +95,6 @@ export default function Index() {
   You will be warned when to use <strong>50× compass</strong>.
   <br />
   <span className="text-gaming-red">Cube Battle</span> → always 50×{" "}
-  <span className="opacity-70 italic">(wiki: Axe Ricochet)</span>
   <br />
   <span className="text-gaming-blue">Card Realm</span> → 50× only if you need gold
 </p>
@@ -187,7 +185,6 @@ export default function Index() {
         letter={config.letter}
         title={config.title}
         subtitle={config.subtitle}
-        hint={config.hint}
         variant={config.variant}
         onClick={() => tracker.tap(event)}
         disabled={isEventDisabled(event)}
