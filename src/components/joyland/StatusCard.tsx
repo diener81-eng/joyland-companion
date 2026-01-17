@@ -23,13 +23,6 @@ export function StatusCard({
       </pre>
       
       <div className="space-y-2 text-xs">
-        <div className="flex items-center gap-2">
-          <span className="text-muted-foreground">Cycle status:</span>
-          <Badge variant={cycleLocked ? "default" : "secondary"}>
-            {cycleLocked ? "LOCKED" : "UNKNOWN"}
-          </Badge>
-        </div>
-        
         {cycleKnown ? (
           <>
             <div className="flex items-center gap-2 flex-wrap">
