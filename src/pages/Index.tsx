@@ -51,6 +51,7 @@ const eventConfig: Record<EventType, {
 export default function Index() {
   const tracker = useJoylandTracker();
   const displayInfo = tracker.getDisplayInfo();
+  const hasStarted =  tracker.inputHistory.length > 0 || (displayInfo.allowedEvents !== null);
   const [loadDialogOpen, setLoadDialogOpen] = useState(false);
   const [saveCode, setSaveCode] = useState("");
 
@@ -79,9 +80,11 @@ export default function Index() {
   };
 
   const isEventDisabled = (event: EventType): boolean => {
-    if (!displayInfo.allowedEvents) return false;
-    return !displayInfo.allowedEvents.has(event);
-  };
+  if (!hasStarted) return true;                 // 🔒 lock events on fresh open
+  if (!displayInfo.allowedEvents) return false; // allow all if tracker says "no restriction"
+  return !displayInfo.allowedEvents.has(event); // otherwise only allowed ones
+};
+
 
   return (
     <div className="min-h-screen bg-background p-4 pb-8">

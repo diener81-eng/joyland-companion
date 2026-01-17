@@ -14,14 +14,14 @@ interface GameButtonProps {
 }
 
 const variantStyles = {
-  'green': 'bg-gradient-to-br from-gaming-green/60 to-gaming-green/50 text-primary-foreground', // Made less bright
-  'green-alt': 'bg-gradient-to-br from-gaming-green/50 to-gaming-green/40 text-primary-foreground', // Made less bright
+  'green': 'bg-gradient-to-br from-gaming-green/60 to-gaming-green/50 text-primary-foreground', 
+  'green-alt': 'bg-gradient-to-br from-gaming-green/50 to-gaming-green/40 text-primary-foreground', 
   'gray': 'bg-gradient-to-br from-secondary to-secondary/80 text-secondary-foreground',
   'teal': 'bg-gradient-to-br from-gaming-teal to-gaming-teal/80 text-primary-foreground gaming-glow-teal',
   'red': 'bg-gradient-to-br from-gaming-red to-gaming-red/80 text-foreground gaming-glow-red',
   'blue': 'bg-gradient-to-br from-gaming-blue to-gaming-blue/80 text-primary-foreground gaming-glow-blue',
   'blue-dark': 'bg-gradient-to-br from-[#044280] to-[#044280]/80 text-primary-foreground',
-  'pink': 'bg-gradient-to-br from-pink-300 to-pink-400/80 text-foreground', // Add this
+  'pink': 'bg-gradient-to-br from-pink-300 to-pink-400/80 text-black', 
   'gold': 'bg-gradient-to-br from-gaming-gold to-gaming-gold/80 text-primary-foreground gaming-glow-gold',
   'purple': 'bg-gradient-to-br from-gaming-purple to-gaming-purple/80 text-foreground gaming-glow-purple',
   'purple-dim': 'bg-gradient-to-br from-gaming-purple/75 to-gaming-purple/55 text-foreground',
