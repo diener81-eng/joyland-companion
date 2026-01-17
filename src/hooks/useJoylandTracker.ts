@@ -343,7 +343,7 @@ export function useJoylandTracker() {
         const hasCube = possibleThirdMoves.has("Cube Battle");
         const hasTreasure = possibleThirdMoves.has("Treasure Hunt");
 
-        if (!hasCrossroads && (hasCube || hasTreasure)) {
+        if (!hasCrossroads && hasCube && hasTreasure) {
           banner = "Start-of-sequence: next is either Cube Battle (use 50×) or Treasure Hunt (50× if you need gold).";
         }
       }
