@@ -142,7 +142,7 @@ export default function Index() {
     currentMove={displayInfo.currentMove}
     completedNums={displayInfo.completedNums}
     cycleKnown={displayInfo.cycleKnown}
-  />
+  /> 
   <div className="flex gap-2 shrink-0">
     <GameButton
       icon={Play}
