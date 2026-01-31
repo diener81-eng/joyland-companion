@@ -51,6 +51,7 @@ const eventConfig: Record<EventType, {
 export default function Index() {
   const tracker = useJoylandTracker();
   const displayInfo = tracker.getDisplayInfo();
+  const hasStarted = tracker.hasStarted;
   const hasStarted =  tracker.inputHistory.length > 0 || (displayInfo.allowedEvents !== null);
   const [loadDialogOpen, setLoadDialogOpen] = useState(false);
   const [saveCode, setSaveCode] = useState("");
@@ -190,7 +191,7 @@ export default function Index() {
   subtitle={config.subtitle}
   variant={config.variant}
   onClick={() => tracker.tap(event)}
-  disabled={isEventDisabled(event)}
+  disabled={!hasStarted || isEventDisabled(event)}
   highlight={
     event === "Axe Ricocheting" &&
     !isEventDisabled(event)
