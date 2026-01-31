@@ -7,8 +7,7 @@ interface GameButtonProps {
   title: string;
   subtitle?: string;
 
-  variant: 'green' | 'green-alt' | 'gray' | 'teal' | 'red' | 'blue' | 'blue-dark' | 'pink' | 'gold' | 'purple' | 'purple-dim' | 'dark' | 'dark-alt';
-
+  variant: 'green' | 'green-alt' | 'gray' | 'teal' | 'red' | 'blue' | 'blue-dark' | 'pink' | 'gold' | 'purple' | 'dark' | 'dark-alt';
   onClick: () => void;
   disabled?: boolean;
   compact?: boolean;
@@ -42,32 +41,31 @@ export function GameButton({
   variant, 
   onClick, 
   disabled,
-  compact = false,
-  highlight = false
+  compact = false
 }: GameButtonProps) {
   return (
     <button
       onClick={onClick}
       disabled={disabled}
-      className={cn(
-        "relative rounded-xl border-0",
-        "transition-all duration-200 ease-out",
-        "hover:scale-[1.02]",
-        "active:scale-[0.98]",
-        "disabled:opacity-30 disabled:grayscale-[0.3] disabled:cursor-not-allowed disabled:hover:scale-100",
-        "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-background",
-        variantStyles[variant],
+className={cn(
+  "relative rounded-xl border-0",
+  "transition-all duration-200 ease-out",
+  "hover:scale-[1.02]",
+  "active:scale-[0.98]",
+  "disabled:opacity-30 disabled:grayscale-[0.3] disabled:cursor-not-allowed disabled:hover:scale-100",
+  "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-background",
+  variantStyles[variant],
 
-        // 🔥 Highlight when important & enabled
-        highlight && !disabled && [
-          "brightness-125",
-          "shadow-[0_0_18px_rgba(46,204,113,0.55)]",
-          "animate-pulse"
-        ],
+  // 🔥 Highlight when important & enabled
+  highlight && !disabled && [
+    "brightness-125",
+    "shadow-[0_0_18px_rgba(46,204,113,0.55)]",
+    "animate-pulse"
+  ],
 
-        compact ? "px-3 py-1.5" : "w-[70%] max-w-[200px] p-2"
-      )}
-    >
+  compact ? "px-3 py-1.5" : "w-[70%] max-w-[200px] p-2"
+)}
+
       <div className={cn(
         "flex items-center justify-center gap-2",
         compact ? "" : "py-2"
@@ -76,14 +74,13 @@ export function GameButton({
           <span className={cn("font-black", compact ? "text-sm" : "text-base")}>{letter}</span>
           <Icon className={cn("opacity-90", compact ? "h-3 w-3" : "h-4 w-4")} strokeWidth={2.5} />
         </div>
-
-        <div className="text-center min-w-0">
-          <div className={cn("font-bold leading-tight", compact ? "text-[10px]" : "text-xs")}>
-            {title} {subtitle && <span className="opacity-90">{subtitle}</span>}
-          </div>
-        </div>
+<div className="text-center min-w-0">
+  <div className={cn("font-bold leading-tight", compact ? "text-[10px]" : "text-xs")}>
+    {title} {subtitle && <span className="opacity-90">{subtitle}</span>}
+  </div>
+  
+</div>
       </div>
     </button>
   );
 }
-
