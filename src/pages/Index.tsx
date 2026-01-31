@@ -182,16 +182,21 @@ export default function Index() {
   {(Object.keys(eventConfig) as EventType[]).map((event) => {
     const config = eventConfig[event];
     return (
-      <GameButton
-        key={event}
-        icon={config.icon}
-        letter={config.letter}
-        title={config.title}
-        subtitle={config.subtitle}
-        variant={config.variant}
-        onClick={() => tracker.tap(event)}
-        disabled={isEventDisabled(event)}
-      />
+<GameButton
+  key={event}
+  icon={config.icon}
+  letter={config.letter}
+  title={config.title}
+  subtitle={config.subtitle}
+  variant={config.variant}
+  onClick={() => tracker.tap(event)}
+  disabled={isEventDisabled(event)}
+  highlight={
+    event === "Axe Ricocheting" &&
+    !isEventDisabled(event)
+  }
+/>
+
     );
   })}
 </div>
