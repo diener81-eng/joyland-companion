@@ -171,7 +171,7 @@ export default function Index() {
     letter="❓"
     title="Unknown"
     subtitle="Position"
-    vvariant="purple-dim"
+    variant="purple-dim"
     onClick={tracker.unknownPosition}
     compact
   />
