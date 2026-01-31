@@ -52,7 +52,6 @@ export default function Index() {
   const tracker = useJoylandTracker();
   const displayInfo = tracker.getDisplayInfo();
   const hasStarted = tracker.hasStarted;
-  const hasStarted =  tracker.inputHistory.length > 0 || (displayInfo.allowedEvents !== null);
   const [loadDialogOpen, setLoadDialogOpen] = useState(false);
   const [saveCode, setSaveCode] = useState("");
 
